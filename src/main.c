@@ -11,7 +11,7 @@ unsigned long pulseIn(uint16_t gpioPin, GPIO_TypeDef *gpiox, uint8_t state, unsi
 
 int main(void) {
 
-	//DWT_Init();
+	DWT_Init();
 
 	//Initialize Port E and enable the port
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
@@ -31,7 +31,7 @@ int main(void) {
 
 	GPIO_Init(GPIOE, &gpioInitTrig);
 
-	while(1) {
+	for (int i = 0; i < 5000000; i++) {
 		GPIO_SetBits(GPIOE, TRIGPIN);
 		DWT_Delay(10);
 		GPIO_ResetBits(GPIOE, TRIGPIN);
