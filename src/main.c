@@ -31,14 +31,14 @@ int main(void) {
 
 	GPIO_Init(GPIOE, &gpioInitTrig);
 
-	for (int i = 0; i < 5000000; i++) {
+	while(1) {
 		GPIO_SetBits(GPIOE, TRIGPIN);
 		DWT_Delay(10);
 		GPIO_ResetBits(GPIOE, TRIGPIN);
 
 		unsigned long response = pulseIn(ECHOPIN, GPIOE, 1, 1000);
 
-		trace_printf("%d\n", (response*170)/10000);
+		trace_printf("distance in cm: %d\n", (response*170)/10000);
 	}
 }
 
